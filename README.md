@@ -35,5 +35,7 @@ WantedBy=multi-user.target
 ## Charts
 Seems to work ok. At least it stops my test pi 3 throttling. Without fan:
 ![stressberry chart without fan](img/nofan.png)
+
 With fan:
+
 ![stressberry chart with fan](img/fan.png)
