@@ -1,7 +1,7 @@
 # go-rpifancon
-A simple temp based fan controller for a raspberry pi in go.
+A simple temperature based fan controller for a raspberry pi in go.
 
-##Usage
+## Usage
 ```
   -checks int
          The number of checks of temperatures to check before state changes. (default 3)
@@ -17,7 +17,7 @@ A simple temp based fan controller for a raspberry pi in go.
          The amount of time to wait between polling temperature. Multiply this by checks to get time between pin state changes. (default 5)
 ```
 
-##Systemd
+## Systemd
 I run it with a little systemd service like so: 
 ```
 [Unit]
@@ -32,8 +32,8 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-##Charts
+## Charts
 Seems to work ok. At least it stops my test pi 3 throttling. Without fan:
-[stressberry chart without fan](/img/nofan.png)
+![stressberry chart without fan](img/nofan.png)
 With fan:
-[stressberry chart with fan](/img/fan.png)
+![stressberry chart with fan](img/fan.png)
