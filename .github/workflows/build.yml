@@ -16,10 +16,10 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Build
-      run: GOOS=linux GOARCH=arm64 go build -v . -o rpifancon
+      run: GOOS=linux GOARCH=arm64 go build -v main/rpifancon.go
 
     - name: Test
-      run: go test -v .
+      run: go test -v main/rpifancon.go
