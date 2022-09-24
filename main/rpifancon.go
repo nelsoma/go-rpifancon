@@ -95,7 +95,7 @@ func main() {
 
 		if *debug {
 			log.Printf("Doing Initial Temp Reads...")
-			log.Printf("Inital temp read %i:  %s", x, currtemp())
+			log.Printf("Inital temp read %d:  %d", x, currtemp())
 		}
 
 		recenttemps = append(recenttemps, currtemp())
@@ -105,7 +105,7 @@ func main() {
 	}
 
 	if *debug {
-		log.Printf("Inital temp reads:  %a", recenttemps)
+		log.Printf("Inital temp reads:  %v", recenttemps)
 	}
 
 	// keep watching the temperature, and if it goes above our threshold turn the fan on
@@ -116,8 +116,8 @@ func main() {
 		_, recenttemps = recenttemps[0], recenttemps[1:]
 
 		if *debug {
-			log.Printf("Temp reads:  %a", recenttemps)
-			log.Printf("Mean temp:  %i", getmean(recenttemps))
+			log.Printf("Temp reads:  %v", recenttemps)
+			log.Printf("Mean temp:  %d", getmean(recenttemps))
 		}
 
 		time.Sleep(time.Second * time.Duration(*wait))
@@ -134,13 +134,17 @@ func main() {
 
 		if (avg >= *threshold) && (rpio.Low == pin.Read()) {
 			// turn fan on
-			log.Printf("Turning fan on.")
+			if *debug {
+				log.Printf("Turning fan on.")
+			}
 			pin.High()
 			// sleep for a bit before re-entering the loop to delay any possible state changes
 			time.Sleep((time.Second * time.Duration(*wait)) * time.Duration(*checks))
 		} else if (avg < *threshold) && rpio.High == pin.Read() {
 			// turn fan off
-			log.Printf("Turning fan off.")
+			if *debug {
+				log.Printf("Turning fan off.")
+			}
 			pin.Low()
 			// sleep for a bit before re-entering the loop to delay any possible state changes
 			time.Sleep((time.Second * time.Duration(*wait)) * time.Duration(*checks))
