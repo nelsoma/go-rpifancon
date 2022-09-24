@@ -1,4 +1,4 @@
-name: Go
+name: build rpifancon
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: GOOS=linux GOARCH=arm64 go build -v ./...
+      run: GOOS=linux GOARCH=arm64 go build -v . -o rpifancon
 
     - name: Test
-      run: go test -v ./...
+      run: go test -v .
