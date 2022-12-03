@@ -4,7 +4,7 @@ A simple temperature based fan controller for a raspberry pi in go.
 ## Usage
 ```
   -checks int
-         The number of checks of temperatures to check before state changes. (default 3)
+         The number of samples of temperatures to check before state changes. (default 3)
   -debug
          Debug info.
   -help
@@ -12,7 +12,7 @@ A simple temperature based fan controller for a raspberry pi in go.
   -iopin int
          The GPIO pin used to control the fan. (default 17)
   -threshold int
-         The temperature in celius above which to enable the fan. (default 65)
+         The temperature in celsius above which to enable the fan. (default 65)
   -wait int
          The amount of time to wait between polling temperature. Multiply this by checks to get time between pin state changes. (default 5)
 ```
@@ -33,9 +33,5 @@ WantedBy=multi-user.target
 ```
 
 ## Charts
-Seems to work ok. At least it stops my test pi 3 throttling. Without fan:
-![stressberry chart without fan](img/nofan.png)
-
-With fan:
-
-![stressberry chart with fan](img/fan.png)
+After some brief testing with the wonderful  [Stressberry](https://github.com/nschloe/stressberry) on my pi 4 it seems to work ok, preventing it throttling at high load:
+![stressberry chart with fan](img/test.png)
