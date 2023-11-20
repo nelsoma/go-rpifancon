@@ -32,6 +32,12 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
+## Build
+Remember to build for arm:
+```
+GOOS=linux GOARCH=arm go build -v main/rpifancon.go
+```
+
 ## Charts
 After some brief testing with the wonderful  [Stressberry](https://github.com/nschloe/stressberry) on my pi 4 it seems to work ok, preventing it throttling at high load:
 ![stressberry chart with fan](img/test.png)
