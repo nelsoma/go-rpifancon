@@ -10,13 +10,14 @@ package main
 import (
 	"flag"
 	"fmt"
-	rpio "github.com/stianeikeland/go-rpio/v4"
 	"log"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
+
+	rpio "github.com/stianeikeland/go-rpio/v4"
 )
 
 func currtemp() int {
@@ -137,6 +138,7 @@ func main() {
 			if *debug {
 				log.Printf("Turning fan on.")
 			}
+			log.Printf("Mean temp: %d > %d , turning fan ON", avg, *threshold)
 			pin.High()
 			// sleep for a bit before re-entering the loop to delay any possible state changes
 			time.Sleep((time.Second * time.Duration(*wait)) * time.Duration(*checks))
@@ -145,6 +147,7 @@ func main() {
 			if *debug {
 				log.Printf("Turning fan off.")
 			}
+			log.Printf("Mean temp: %d < %d > , turning fan OFF", avg, *threshold)
 			pin.Low()
 			// sleep for a bit before re-entering the loop to delay any possible state changes
 			time.Sleep((time.Second * time.Duration(*wait)) * time.Duration(*checks))
